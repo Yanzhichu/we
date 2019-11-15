@@ -16,6 +16,6 @@ import org.springframework.stereotype.Controller;
 @Controller
 @RequestMapping("/doctor")
 public class DoctorController {
-
+//注解
 }
 
