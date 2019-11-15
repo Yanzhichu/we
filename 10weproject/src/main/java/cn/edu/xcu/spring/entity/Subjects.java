@@ -9,7 +9,7 @@ import java.io.Serializable;
  * </p>
  *
  * @author Yanzhichu  zhangsan  snaye
- * @since 2019-09-15
+ * @since 2019-11-15
  */
 @TableName("t_subjects")
 public class Subjects implements Serializable {

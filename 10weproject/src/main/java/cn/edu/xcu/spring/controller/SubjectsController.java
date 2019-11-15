@@ -1,9 +1,17 @@
 package cn.edu.xcu.spring.controller;
 
 
-import org.springframework.web.bind.annotation.RequestMapping;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import cn.edu.xcu.spring.entity.Subjects;
+import cn.edu.xcu.spring.service.ISubjectsService;
 
 /**
  * <p>
@@ -11,11 +19,18 @@ import org.springframework.stereotype.Controller;
  * </p>
  *
  * @author Yanzhichu  zhangsan  snaye
- * @since 2019-09-15
+ * @since 2019-11-15
  */
-@Controller
+
+@RestController
 @RequestMapping("/subjects")
 public class SubjectsController {
-
+	@Autowired
+	private ISubjectsService iSubjectsService;
+	@RequestMapping("/findAll")
+	
+	public List<Subjects> findAll(){
+		return iSubjectsService.list();
+	}
 }
 
