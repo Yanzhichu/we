@@ -1,18 +1,23 @@
 package cn.edu.xcu.spring.controller;
 
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 
 import cn.edu.xcu.spring.entity.Patient;
 import cn.edu.xcu.spring.service.IPatientService;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 
 /**
  * <p>
@@ -32,10 +37,35 @@ public class PatientController {
 	//并且page的默认值是1，非必填，limit也是非必填的，默认值可以自己设置
 	@RequestMapping("/lists")
 	@ResponseBody
-	public IPage<Patient> bookLists(@RequestParam(defaultValue = "1",required = false)int page,@RequestParam(defaultValue = "2",required = false)int limit) {
+	public IPage<Patient> bookLists(@RequestParam(defaultValue = "",required = false)String name,
+			@RequestParam(defaultValue = "-1",required = false)int tid,
+			@RequestParam(defaultValue = "1",required = false)int page,
+			@RequestParam(defaultValue = "2",required = false)int limit) {
 		IPage<Patient> toOnePage = new Page<Patient>(page,limit);
-		IPage<Patient> resultPage=iPatientService.page(toOnePage);
+		QueryWrapper<Patient> quer=new QueryWrapper<>();
+		if(StringUtils.hasText(name)) {//name是否有数据
+			quer.like("name", name);
+		}
+		if(tid!=-1) {
+			quer.eq("tid", tid);
+		}
+		IPage<Patient> resultPage=iPatientService.page(toOnePage,quer);
  		return resultPage;
+	}
+	
+	@RequestMapping("/delete")
+	@ResponseBody
+	public Map<String,Object> doDel(int id) {
+		Map<String,Object> resultMap=new HashMap<String, Object>();
+		Boolean res= iPatientService.removeById(id);
+		if(res) {//拿到res，判断res的值是否为true，true表示已经删除，否则表示未删除
+			resultMap.put("msg", "删除成功");
+			resultMap.put("code",1);
+		}else {
+			resultMap.put("msg", "删除失败");
+			resultMap.put("code",-1);
+		}
+		return resultMap;
 	}
 
 }

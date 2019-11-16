@@ -59,13 +59,12 @@
 
 							<div class="layui-inline">
 								<label class="layui-form-label">就诊科室</label>
-								<div class="layui-input-block">
+								<div class="layui-input-inline">
 									<select name="tid" lay-filter="tid" id="tidSel2">
 										<option value="-1">--请选择--</option>
 									</select>
 								</div>
 							</div>
-
 							<div class="layui-inline">
 								<button class="layui-btn layuiadmin-btn-comm" data-type="reload"
 									lay-submit="" lay-filter="bookBtn2">
@@ -180,16 +179,19 @@
 	<script>
 		layui.use([ 'table', 'form' ], function() {
 			var table = layui.table;
-			/* 	layui.form.on('submit(book-front-search)', function(data) {
+			//搜索框的js代码
+			//分页查询功能
+			layui.form.on('submit(bookBtn2)', function(data) {
 					//formSubmit(data);
 					table.reload('test', {
-						url : '/book/list',
-						where : data.field
+						url : '/patient/lists',
+						where : data.field//输出url里的所有内容
 					//设定异步数据接口的额外参数
 					//,height: 300
 					});
 					return false;//返回 false 采用 Ajax 提交
-				}); */
+				}); 
+			//./分页查询
 
 			//数据类型
 			layui.$.post("subjects/findAll", function(data) {
@@ -221,7 +223,6 @@
 					field : 'name',
 					title : '姓名',
 					width : 80,
-					edit : 'text'
 				}, {
 					field : 'age',
 					title : '年龄',
@@ -232,7 +233,6 @@
 					field : 'tid',
 					title : '类型',
 					width : 80,
-					edit : 'text',
 					sort : true
 				}, {
 					field : 'price',
@@ -340,20 +340,19 @@
 			});
 
 			//监听行工具事件
+			//删除
 			table.on('tool(test)', function(obj) {
 				var data = obj.data;
 				//console.log(obj)
 				if (obj.event === 'del') {
-					layer.confirm('真的删除行么', function(index) {
-						/*  obj.del();
-						 layer.close(index); */
-						layui.$.post("book/delete", {
+					layer.confirm('病人是否已经出院', function(index) {
+						layui.$.post("patient/delete", {
 							id : data.id
-						}, function(map) {
-							if (map.code == 1) {//拿到controller里的code判断是否删除成功
+						}, function(resultMap) {
+							if (resultMap.code == 1) {//拿到controller里的code判断是否删除成功
 								//删除成功要关闭提示框并且需要刷新表格内容
-								layer.close(index);//关闭层
-								layer.msg(map.message, {//删除成功后提示成功的消息
+								layer.closeAll;//关闭所有
+								layer.msg(resultMap.msg, {//删除成功后提示成功的消息
 									icon : 1,
 									time : 2000
 								//2秒关闭（如果不配置，默认是3秒）
@@ -366,17 +365,18 @@
 									}
 								}); //只重载数据
 							} else {
-								layer.msg(map.message, {
-									icon : 1,
+								layer.msg(resultMap.msg, {
+									icon : 2,
 									time : 2000
 								//消息持续时间
 								});
 								//删除失败后也需要重新加载图书列表
 								table.reload("test");
-								layer.close(index);//关闭层
+								layer.closeAll;//关闭所有
 							}
 						});
 					});
+					//./删除
 				} else if (obj.event === 'edit') {
 					//执行修改操作
 					//第一步是点击修改按钮后弹出一个内容框
