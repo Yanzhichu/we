@@ -12,6 +12,9 @@
     "tests"
   ],
   "dependencies":{
-  	"layui":"2.4.3"
+  	"layui":"2.4.3",
+  	"bootstrap":"4.3.1",
+  	"popper.js":"1.14.7",
+  	"jquery":"3.3.1"
   }
 }

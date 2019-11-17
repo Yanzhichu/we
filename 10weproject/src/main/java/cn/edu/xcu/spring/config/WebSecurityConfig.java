@@ -18,7 +18,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.csrf().disable();
-		http.authorizeRequests().antMatchers("/**/*.js", "/**/*.css", "/**/*.css.map", "/**/*.jpg","/**/*/*.png").permitAll()
+		http.authorizeRequests().antMatchers("/**/*.js", "/**/*.css", "/**/*.css.map", "/**/*.jpg","/**/*/*.png","/tologin").permitAll()
 				.anyRequest().authenticated().antMatchers("/**").access("hasRole('ROLE_DOCOTR')").and().formLogin()
 				.usernameParameter("username").passwordParameter("password").loginPage("/tologin")
 				.defaultSuccessUrl("/tomain").permitAll();
