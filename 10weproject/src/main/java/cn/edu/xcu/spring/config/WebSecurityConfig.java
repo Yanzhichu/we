@@ -18,10 +18,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.csrf().disable();
-		http.authorizeRequests().antMatchers("/**/*.js", "/**/*.css", "/**/*.css.map", "/**/*.jpg").permitAll()
+		http.authorizeRequests().antMatchers("/**/*.js", "/**/*.css", "/**/*.css.map", "/**/*.jpg","/**/*/*.png").permitAll()
 				.anyRequest().authenticated().antMatchers("/**").access("hasRole('ROLE_DOCOTR')").and().formLogin()
-				.usernameParameter("username").passwordParameter("password").loginPage("/toLogin")
-				.defaultSuccessUrl("/home").permitAll();
+				.usernameParameter("username").passwordParameter("password").loginPage("/tologin")
+				.defaultSuccessUrl("/tomain").permitAll();
 	}
 
 	// 配置认证管理器

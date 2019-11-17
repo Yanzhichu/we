@@ -36,7 +36,69 @@
 		</ul>
 
 		<!-- 左部垂直菜单 -->
-		<div class="layui-side layui-bg-black"></div>
+		<div class="layui-side layui-bg-black">
+		<div class="layui-collapse" lay-accordion="">
+  <div class="layui-colla-item">
+    <h2 class="layui-colla-title">文豪</h2>
+    <div class="layui-colla-content layui-show">
+    
+      <div class="layui-collapse" lay-accordion="">
+        <div class="layui-colla-item">
+          <h2 class="layui-colla-title">唐代</h2>
+          <div class="layui-colla-content layui-show">
+            
+            <div class="layui-collapse" lay-accordion="">
+              <div class="layui-colla-item">
+                <h2 class="layui-colla-title">杜甫</h2>
+                <div class="layui-colla-content layui-show">
+                  伟大的诗人
+                </div>
+              </div>
+              <div class="layui-colla-item">
+                <h2 class="layui-colla-title">李白</h2>
+                <div class="layui-colla-content">
+                  <p>据说是韩国人</p>
+                </div>
+              </div>
+              <div class="layui-colla-item">
+                <h2 class="layui-colla-title">王勃</h2>
+                <div class="layui-colla-content">
+                  <p>千古绝唱《滕王阁序》</p>
+                </div>
+              </div>
+            </div>
+            
+          </div>
+        </div>
+        <div class="layui-colla-item">
+          <h2 class="layui-colla-title">宋代</h2>
+          <div class="layui-colla-content">
+            <p>比如苏轼、李清照</p>
+          </div>
+        </div>
+        <div class="layui-colla-item">
+          <h2 class="layui-colla-title">当代</h2>
+          <div class="layui-colla-content">
+            <p>比如贤心</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="layui-colla-item">
+    <h2 class="layui-colla-title">科学家</h2>
+    <div class="layui-colla-content">
+      <p>伟大的科学家</p>
+    </div>
+  </div>
+  <div class="layui-colla-item">
+    <h2 class="layui-colla-title">艺术家</h2>
+    <div class="layui-colla-content">
+      <p>浑身散发着艺术细胞</p>
+    </div>
+  </div>
+</div>
+		</div>
 		<!-- /左部垂直菜单 -->
 
 		<div class="layui-body">
@@ -56,7 +118,7 @@
 							<div class="layui-inline">
 								<label class="layui-form-label">就诊科室</label>
 								<div class="layui-input-block">
-									<select name="tid" lay-filter="tid" id="tidSel2">
+									<select name="tid" lay-filter="tid" class="tidSel" id="tidSel2">
 										<option value="-1">--请选择--</option>
 									</select>
 								</div>
@@ -77,7 +139,7 @@
 
 		<div class="layui-footer">
 			<!-- 底部固定区域 -->
-			© layui.com - 底部固定区域
+			医院管理系统
 		</div>
 	</div>
 
@@ -97,43 +159,33 @@
   	</div>
 	</script>
 	<!-- /开启头部工具栏--新增添加 -->
-
-	<script src="bower_components/layui/dist/layui.js"></script>
+<script src="bower_components/layui/dist/layui.js"></script>
+	
 	<script>
 		layui.use([ 'table', 'form' ], function() {
 			var table = layui.table;
 			layui.$.post("subjects/findAll", function(data) {
 				for (var i = 0; i < data.length; i++) {
 					var op = new Option(data[i].name, data[i].id);
-					layui.$("#tidSel").append(op);
+					layui.$(".tidSel").append(op);
 				}
 				;
 				layui.form.render("select");
 			});
-
+			//修改1
+			var dataSelect;
+			//修改1结束
 			//分页查询功能
 			layui.form.on('submit(bookBtn2)', function(data) {
 				//formSubmit(data);
+				dataSelect=data.field;
 				table.reload('test', {
 					url : '/patient/lists',
-					where : data.field
-				//输出url里的所有内容
-				//设定异步数据接口的额外参数
-				//,height: 300
+					where : data.field//name和select
 				});
 				return false;//返回 false 采用 Ajax 提交
 			});
 			//./分页查询
-
-			//数据类型
-			layui.$.post("subjects/findAll", function(data) {
-				for (var i = 0; i < data.length; i++) {
-					var op = new Option(data[i].name, data[i].id);
-					layui.$("#tidSel2").append(op);
-				}
-				;
-				layui.form.render("select");
-			});
 
 			table.render({
 				elem : '#test',
@@ -209,17 +261,6 @@
 			table.on('toolbar(test)', function(obj) {
 				var checkStatus = table.checkStatus(obj.config.id);
 				switch (obj.event) {
-				case 'getCheckData':
-					var data = checkStatus.data;
-					layer.alert(JSON.stringify(data));
-					break;
-				case 'getCheckLength':
-					var data = checkStatus.data;
-					layer.msg('选中了：' + data.length + ' 个');
-					break;
-				case 'isAll':
-					layer.msg(checkStatus.isAll ? '全选' : '未全选');
-					break;
 				case 'bookAdd':
 					openPatientForm({
 						"id" : "",
@@ -231,6 +272,12 @@
 						"stadate" : "",
 						"enddate" : ""
 					});
+					/* //修改2
+					layui.$("#inputName").val("");
+						table.reload('test', {
+							url : '/patient/lists',
+						});
+					//修改2结束 */
 					break;
 
 				//自定义头工具栏右侧图标 - 提示
@@ -239,25 +286,6 @@
 					break;
 				}
 				;
-				//添加图书页面应该需要重载表单
-				layui.form.on('submit(bookSubmit)', function(data) {
-					//点击提交按钮后提交表单
-					layui.$.post("book/update", data.field, function(res) {
-						if (res.code == 0) {
-							layer.closeAll();//疯狂模式，关闭所有的弹出层
-							//添加后更新表格
-							table.reload('test', {
-								url : 'book/lists',
-								where : {}
-							//设定异步数据接口的额外参数
-							//,height: 300
-							});
-						} else {
-
-						}
-					})
-					return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
-				});
 			});
 
 			//监听行工具事件
@@ -266,8 +294,6 @@
 				//console.log(obj)
 				if (obj.event === 'del') {
 					layer.confirm('病人是否已经出院', function(index) {
-						/*  obj.del();
-						 layer.close(index); */
 						layui.$.post("patient/delete", {
 							id : data.id
 						}, function(resultMap) {
@@ -276,8 +302,7 @@
 								layer.close(index);//关闭层
 								layer.msg(resultMap.msg, {//删除成功后提示成功的消息
 									icon : 1,
-									time : 2000
-								//2秒关闭（如果不配置，默认是3秒）
+									time : 2000//2秒关闭
 								});
 								//当删除成功后要刷新图书列表
 								table.reload('test', {
@@ -315,7 +340,7 @@
 									layer.msg(result.msg);
 									table.reload('test', {
 										page : {
-											curr : 1
+											 curr : 1
 										//重新从第 1 页开始
 										}
 									}); //只重载数据
@@ -324,7 +349,6 @@
 									layer.msg(result.msg);
 								}
 							})
-
 					return false;
 				});
 			}
@@ -361,6 +385,19 @@
 			});
 		});
 	</script>
+	
+	<script>
+layui.use(['element', 'layer'], function(){
+  var element = layui.element;
+  var layer = layui.layer;
+  
+  //监听折叠
+  element.on('collapse(test)', function(data){
+    layer.msg('展开状态：'+ data.show);
+  });
+});
+</script>
+
 </body>
 <!-- 弹出层的书籍维护表单 -->
 <div style="display: none;" id="editDiv">
@@ -390,7 +427,7 @@
 		<div class="layui-form-item">
 			<label class="layui-form-label">科室</label>
 			<div class="layui-input-block">
-				<select name="tid" lay-filter="tid" id="tidSel">
+				<select name="tid" lay-filter="tid" class="tidSel" id="tidSel">
 					<option value="-1">--请选择--</option>
 				</select>
 			</div>

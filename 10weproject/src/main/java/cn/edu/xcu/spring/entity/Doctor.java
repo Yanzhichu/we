@@ -1,9 +1,11 @@
 package cn.edu.xcu.spring.entity;
 
-import com.baomidou.mybatisplus.annotation.TableName;
+import java.io.Serializable;
+import java.util.List;
+
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
-import java.io.Serializable;
+import com.baomidou.mybatisplus.annotation.TableName;
 
 /**
  * <p>
@@ -25,6 +27,7 @@ public class Doctor implements Serializable {
 
     private String password;
 
+    private List<Role> roles;
 
     public Integer getId() {
         return id;
@@ -58,4 +61,14 @@ public class Doctor implements Serializable {
         ", password=" + password +
         "}";
     }
+
+	public List<Role> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(List<Role> roles) {
+		this.roles = roles;
+	}
+
+	
 }

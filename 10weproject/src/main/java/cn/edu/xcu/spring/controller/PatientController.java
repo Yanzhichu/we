@@ -1,15 +1,12 @@
 package cn.edu.xcu.spring.controller;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
@@ -42,7 +39,7 @@ public class PatientController {
 			@RequestParam(defaultValue = "1", required = false) int page,
 			@RequestParam(defaultValue = "2", required = false) int limit) {
 		IPage<Patient> toOnePage = new Page<Patient>(page, limit);
-		QueryWrapper<Patient> quer = new QueryWrapper<>();
+		QueryWrapper<Patient> quer = new QueryWrapper<>();//动态SQL查询
 		if (StringUtils.hasText(name)) {// name是否有数据
 			quer.like("name", name);
 		}
