@@ -9,13 +9,6 @@
 </head>
 <body class="layui-layout-body">
 	<div class="layui-layout layui-layout-admin">
-		<!-- <div class="layui-header">
-			<div class="layui-logo">就诊人员信息列表</div>
-			头部区域（可配合layui已有的水平导航）
-			<ul class="layui-nav layui-layout-right">
-				<li class="layui-nav-item"><a href="/logout">退出系统</a></li>
-			</ul>
-		</div> -->
 		<ul class="layui-nav layui-bg-green">
 			<li class="layui-nav-item"><a href="">墨绿导航</a></li>
 			<li class="layui-nav-item layui-this"><a href="">产品</a></li>
@@ -34,70 +27,75 @@
 				</dl></li>
 			<li class="layui-nav-item"><a href="">社区</a></li>
 		</ul>
+		<ul class="layui-nav layui-bg-green layui-layout-right">
+			<li class="layui-nav-item"><a href="logout">退出</a></li>
+		</ul>
 
 		<!-- 左部垂直菜单 -->
 		<div class="layui-side layui-bg-black">
-		<div class="layui-collapse" lay-accordion="">
-  <div class="layui-colla-item">
-    <h2 class="layui-colla-title">文豪</h2>
-    <div class="layui-colla-content layui-show">
-    
-      <div class="layui-collapse" lay-accordion="">
-        <div class="layui-colla-item">
-          <h2 class="layui-colla-title">唐代</h2>
-          <div class="layui-colla-content layui-show">
-            
-            <div class="layui-collapse" lay-accordion="">
-              <div class="layui-colla-item">
-                <h2 class="layui-colla-title">杜甫</h2>
-                <div class="layui-colla-content layui-show">
-                  伟大的诗人
-                </div>
-              </div>
-              <div class="layui-colla-item">
-                <h2 class="layui-colla-title">李白</h2>
-                <div class="layui-colla-content">
-                  <p>据说是韩国人</p>
-                </div>
-              </div>
-              <div class="layui-colla-item">
-                <h2 class="layui-colla-title">王勃</h2>
-                <div class="layui-colla-content">
-                  <p>千古绝唱《滕王阁序》</p>
-                </div>
-              </div>
-            </div>
-            
-          </div>
-        </div>
-        <div class="layui-colla-item">
-          <h2 class="layui-colla-title">宋代</h2>
-          <div class="layui-colla-content">
-            <p>比如苏轼、李清照</p>
-          </div>
-        </div>
-        <div class="layui-colla-item">
-          <h2 class="layui-colla-title">当代</h2>
-          <div class="layui-colla-content">
-            <p>比如贤心</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="layui-colla-item">
-    <h2 class="layui-colla-title">科学家</h2>
-    <div class="layui-colla-content">
-      <p>伟大的科学家</p>
-    </div>
-  </div>
-  <div class="layui-colla-item">
-    <h2 class="layui-colla-title">艺术家</h2>
-    <div class="layui-colla-content">
-      <p>浑身散发着艺术细胞</p>
-    </div>
-  </div>
-</div>
+			<!-- 面板嵌套 -->
+			<div class="layui-collapse" lay-accordion="">
+			
+				<div class="layui-colla-item">
+					<h2 class="layui-colla-title">医院简介</h2>
+					<div class="layui-colla-content">
+						<p>医院是指按照法律法规和行业规范，为病员开展必要的医学检查、治疗措施、护理技术、接诊服务、康复设备、救治运输等服务，以救死扶伤为主要目的医疗机构。其服务对象不仅包括有症状的病员和伤员，也包括不能自理或活动受限有医疗护理依赖的老年人，法医评定有医疗护理依赖或病情不稳定需要长期康复经常观察检查的重度病伤员，或有其它特定的情况和人群，如健康人（如孕妇、产妇、新生儿）以及完全健康的人（如来医院进行体格检查或口腔清洁的人）。最初设立时，是供人避难，还备有娱乐节目，使来者舒适，有招待意图。后来，才逐渐成为收容和治疗病人的专门机构。</p>
+					</div>
+				</div>
+				
+				<div class="layui-colla-item">
+					<h2 class="layui-colla-title">医院科室</h2>
+					<div class="layui-colla-content layui-show">
+
+						<div class="layui-collapse" lay-accordion="">
+							
+									<div class="layui-collapse" lay-accordion="">
+										<div class="layui-colla-item">
+											<h2 class="layui-colla-title">针灸科</h2>
+											<div class="layui-colla-content layui-show">伟大的诗人</div>
+										</div>
+										<div class="layui-colla-item">
+											<h2 class="layui-colla-title">骨科</h2>
+											<div class="layui-colla-content">
+												<p>据说是韩国人</p>
+											</div>
+										</div>
+										<div class="layui-colla-item">
+											<h2 class="layui-colla-title">皮肤科</h2>
+											<div class="layui-colla-content">
+												<p>专业治疗皮肤病</p>
+											</div>
+										</div>
+									</div>
+							
+									<div class="layui-colla-item">
+										<h2 class="layui-colla-title">神经内科</h2>
+										<div class="layui-colla-content">
+											<p>比如苏轼、李清照</p>
+										</div>
+									</div>
+									<div class="layui-colla-item">
+										<h2 class="layui-colla-title">耳鼻喉科</h2>
+										<div class="layui-colla-content">
+											<p>比如贤心</p>
+										</div>
+									</div>
+						</div>
+					</div>
+				</div>		
+			</div>
+			<!-- 轮播 -->
+			<div class="layui-carousel" id="test1">
+				<div carousel-item>
+					<div>
+						<img src="image/timg.jpg">
+					</div>
+					<div>
+						<img src="image/timg2.jpg">
+					</div>
+				</div>
+			</div>
+			<!-- /轮播 -->
 		</div>
 		<!-- /左部垂直菜单 -->
 
@@ -118,7 +116,7 @@
 							<div class="layui-inline">
 								<label class="layui-form-label">就诊科室</label>
 								<div class="layui-input-block">
-									<select name="tid" lay-filter="tid" class="tidSel" id="tidSel2">
+									<select name="tid" lay-filter="tid" id="tidSel2">
 										<option value="-1">--请选择--</option>
 									</select>
 								</div>
@@ -139,7 +137,7 @@
 
 		<div class="layui-footer">
 			<!-- 底部固定区域 -->
-			医院管理系统
+			© layui.com - 底部固定区域
 		</div>
 	</div>
 
@@ -159,33 +157,71 @@
   	</div>
 	</script>
 	<!-- /开启头部工具栏--新增添加 -->
-<script src="bower_components/layui/dist/layui.js"></script>
-	
+
+	<script src="bower_components/layui/dist/layui.js"></script>
+	<!-- 轮播 -->
+	<script>
+		layui.use('carousel', function() {
+			var carousel = layui.carousel;
+			//建造实例
+			carousel.render({
+				elem : '#test1',
+				width : '100%' //设置容器宽度
+				,
+				height : '60%',
+				arrow : 'always' //始终显示箭头
+			//,anim: 'updown' //切换动画方式
+			});
+		});
+	</script>
+	<!-- /轮播 -->
+	<!-- 手风琴 -->
+	<script>
+		layui.use([ 'element', 'layer' ], function() {
+			var element = layui.element;
+			var layer = layui.layer;
+
+			//监听折叠
+			element.on('collapse(test)', function(data) {
+				layer.msg('展开状态：' + data.show);
+			});
+		});
+	</script>
+	<!-- //手风琴 -->
 	<script>
 		layui.use([ 'table', 'form' ], function() {
 			var table = layui.table;
 			layui.$.post("subjects/findAll", function(data) {
 				for (var i = 0; i < data.length; i++) {
 					var op = new Option(data[i].name, data[i].id);
-					layui.$(".tidSel").append(op);
+					layui.$("#tidSel").append(op);
 				}
 				;
 				layui.form.render("select");
 			});
-			//修改1
-			var dataSelect;
-			//修改1结束
+
 			//分页查询功能
 			layui.form.on('submit(bookBtn2)', function(data) {
 				//formSubmit(data);
-				dataSelect=data.field;
 				table.reload('test', {
 					url : '/patient/lists',
-					where : data.field//name和select
+					where : data.field
+				//输出url里的所有内容
+				//设定异步数据接口的额外参数
 				});
 				return false;//返回 false 采用 Ajax 提交
 			});
 			//./分页查询
+
+			//数据类型
+			layui.$.post("subjects/findAll", function(data) {
+				for (var i = 0; i < data.length; i++) {
+					var op = new Option(data[i].name, data[i].id);
+					layui.$("#tidSel2").append(op);
+				}
+				;
+				layui.form.render("select");
+			});
 
 			table.render({
 				elem : '#test',
@@ -257,10 +293,21 @@
 				size : 'lg' //大尺寸的表格
 			});
 
-			//头工具栏事件
+			//头工具栏绑定事件
 			table.on('toolbar(test)', function(obj) {
 				var checkStatus = table.checkStatus(obj.config.id);
 				switch (obj.event) {
+				case 'getCheckData':
+					var data = checkStatus.data;
+					layer.alert(JSON.stringify(data));
+					break;
+				case 'getCheckLength':
+					var data = checkStatus.data;
+					layer.msg('选中了：' + data.length + ' 个');
+					break;
+				case 'isAll':
+					layer.msg(checkStatus.isAll ? '全选' : '未全选');
+					break;
 				case 'bookAdd':
 					openPatientForm({
 						"id" : "",
@@ -272,12 +319,7 @@
 						"stadate" : "",
 						"enddate" : ""
 					});
-					/* //修改2
 					layui.$("#inputName").val("");
-						table.reload('test', {
-							url : '/patient/lists',
-						});
-					//修改2结束 */
 					break;
 
 				//自定义头工具栏右侧图标 - 提示
@@ -286,6 +328,7 @@
 					break;
 				}
 				;
+
 			});
 
 			//监听行工具事件
@@ -294,6 +337,8 @@
 				//console.log(obj)
 				if (obj.event === 'del') {
 					layer.confirm('病人是否已经出院', function(index) {
+						/*  obj.del();
+						 layer.close(index); */
 						layui.$.post("patient/delete", {
 							id : data.id
 						}, function(resultMap) {
@@ -302,7 +347,8 @@
 								layer.close(index);//关闭层
 								layer.msg(resultMap.msg, {//删除成功后提示成功的消息
 									icon : 1,
-									time : 2000//2秒关闭
+									time : 2000
+								//2秒关闭（如果不配置，默认是3秒）
 								});
 								//当删除成功后要刷新图书列表
 								table.reload('test', {
@@ -339,16 +385,18 @@
 									layer.closeAll('page');
 									layer.msg(result.msg);
 									table.reload('test', {
+
 										page : {
-											 curr : 1
-										//重新从第 1 页开始
+											curr : 1
 										}
+									//从第一页开始
 									}); //只重载数据
 
 								} else {
 									layer.msg(result.msg);
 								}
 							})
+
 					return false;
 				});
 			}
@@ -362,7 +410,7 @@
 					success : function(layero, index) {// 成功后回调函数
 						layui.form.val('editForm', data);
 						// 使用ajax获取书籍类型
-						getSubmit(data);// 在表单成功打开后调用注册提交方法
+						getSubmit(data);// 在表单成功打开后调用注册提交方法:更新
 					}
 				});
 			}
@@ -385,18 +433,6 @@
 			});
 		});
 	</script>
-	
-	<script>
-layui.use(['element', 'layer'], function(){
-  var element = layui.element;
-  var layer = layui.layer;
-  
-  //监听折叠
-  element.on('collapse(test)', function(data){
-    layer.msg('展开状态：'+ data.show);
-  });
-});
-</script>
 
 </body>
 <!-- 弹出层的书籍维护表单 -->
@@ -427,7 +463,7 @@ layui.use(['element', 'layer'], function(){
 		<div class="layui-form-item">
 			<label class="layui-form-label">科室</label>
 			<div class="layui-input-block">
-				<select name="tid" lay-filter="tid" class="tidSel" id="tidSel">
+				<select name="tid" lay-filter="tid" id="tidSel">
 					<option value="-1">--请选择--</option>
 				</select>
 			</div>
